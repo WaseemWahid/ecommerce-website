@@ -284,6 +284,8 @@ span.text-red {
   position: absolute;
   /* top: -35%;
   left: 8%; */
+  height: 500px;
+  width: 500px;
   top: -25%;
   left: 25%;
 }
