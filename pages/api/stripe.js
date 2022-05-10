@@ -12,9 +12,9 @@ export default async function handler(req, res) {
                 billing_address_collection: 'auto',
                 shipping_options: [
                     { shipping_rate:'shr_1KxZqYGGEEOvJ9su9ZJpcy3L' },
-                    { shipping_rate:'shr_1KxZrVGGEEOvJ9suvRkkQeu6' },
+                    { shipping_rate:'shr_1KxvpaGGEEOvJ9su2Vw4ghZn' },
                 ],
-                line_items: req.body.cartItems.map((item) => {
+                line_items: req.body.map((item) => {
                     const img = item.image[0].asset._ref;
                     const newImage = img.replace('image-', 'https://cdn.sanity.io/images/zkpxumkz/production/').replace('-webp', '.webp');
                     return {
@@ -33,8 +33,8 @@ export default async function handler(req, res) {
                         quantity: item.quantity
                     }
                 }),
-                success_url: `${req.headers.origin}/?success=true`,
-                cancel_url: `${req.headers.origin}/?canceled=true`,
+                success_url: `${req.headers.origin}/success`,
+                cancel_url: `${req.headers.origin}/canceled`,
             }
             // Create Checkout Sessions from body params.
             const session = await stripe.checkout.sessions.create(params);
